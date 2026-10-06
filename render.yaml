@@ -1,0 +1,27 @@
+# RemoteX Relay Server - Render Infrastructure Blueprint
+# Deployment definition for Render Free Tier Web Service
+
+services:
+  - type: web
+    name: remotex-relay
+    env: docker
+    dockerfilePath: Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: REMOTEX_ENV
+        value: production
+      - key: REMOTEX_RELAY_HOST
+        value: 0.0.0.0
+      - key: REMOTEX_ALLOWED_ORIGINS
+        sync: false
+      - key: REMOTEX_MAX_SESSIONS
+        value: "100"
+      - key: REMOTEX_MAX_MESSAGE_BYTES
+        value: "2097152"
+      - key: REMOTEX_SESSION_TIMEOUT_MINUTES
+        value: "30"
+      - key: REMOTEX_AUTH_TIMEOUT_SECONDS
+        value: "10"
+      - key: REMOTEX_RATE_LIMIT_PER_SEC
+        value: "120"
